@@ -27,7 +27,7 @@ services:
     environment:
       - DEV=false
       - APP_PORT=3010
-      - APP_URL=https://localhost:3010/
+      - APP_URL=https://10.5.0.5:3010
       - ACCESS_TOKEN_SECRET=ekWvcHLAwQQPVFiRHJae05WoSn6LEums7VK/pU1ikFs=
       - ACCESS_TOKEN_EXPIRES_IN=30d
       - DB_NAME=procycla
@@ -61,13 +61,14 @@ services:
       vpcbr:
         ipv4_address: 10.5.0.6
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
       - HTTPS=true
       - NEXT_PUBLIC_API_URL=http://localhost:3050/
       - WDS_SOCKET_PORT=0
       - NEXTAUTH_URL=http://localhost:3050/
       - NEXTAUTH_SECRET=ekWvcHLAwQQPVFiRHJae05WoSn6LEums7VK/pU1ikFs=
-      - BACK_API_URL=http://localhost:3050/api/v1/
+      - BACK_API_URL=http://localhost:3050/backend/
+      - BACK_API_AUTH_URL=http://10.5.0.5:3010/
       - STRIPE_PUBLIC_KEY=pk_test_Dt4ZBItXSZT1EzmOd8yCxonL
   bmp:
     build:
@@ -82,6 +83,8 @@ services:
       dockerfile: Dockerfile
       context: ./simulation-procycla/CSTR_service
     restart: always
+    ports:
+      - "7777:80"
     networks:
       vpcbr:
         ipv4_address: 10.5.0.8
