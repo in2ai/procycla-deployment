@@ -27,7 +27,7 @@ services:
     environment:
       - DEV=false
       - APP_PORT=3010
-      - APP_URL=https://10.5.0.5:3010
+      - APP_URL=http://10.5.0.5:3010
       - ACCESS_TOKEN_SECRET=ekWvcHLAwQQPVFiRHJae05WoSn6LEums7VK/pU1ikFs=
       - ACCESS_TOKEN_EXPIRES_IN=30d
       - DB_NAME=procycla
@@ -62,7 +62,7 @@ services:
         ipv4_address: 10.5.0.6
     environment:
       - NODE_ENV=production
-      - HTTPS=true
+      - HTTPS=false
       - NEXT_PUBLIC_API_URL=http://localhost:3050/
       - WDS_SOCKET_PORT=0
       - NEXTAUTH_URL=http://localhost:3050/
@@ -118,3 +118,4 @@ networks:
      config:
        - subnet: 10.5.0.0/24
          gateway: 10.5.0.1
+
