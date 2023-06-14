@@ -22,5 +22,10 @@ Repository with code to deploy Procycla project
         * Deploy db-deployment.yaml, db-clusterip.yaml and db-persistent-volume-claim before each other container and wait over a minute to make sure it has completed its deployment
 * In networking tab in Digital Ocean, at domains, enter the domain you want to use, and then, use the container name as host name (web, api, db) to create a new A rule, and then use the LoadBalancer that kubernetes cluster has associated. Only web and api containers have been set to accept internet outside connections with this method, if you want to open any other container connections, you should add it to the k8s/host.yaml file, and then create the A rule.
     * If you don't want to misuse the IP because of having many LoadBalancers, destroy the kubernetes cluster we used to make the deployment before setting up yours
-* While you don't have a domain active set, you can access those two containers with `<conatiner_name>.<load_balancer_ip>.nip.io`
+* While you don't have a domain active set, you can access those two containers with `<container_name>.<load_balancer_ip>.nip.io`
 * Load Balancer IP can be checked in the Networking tab
+
+## My secret 
+* To generate the values in my secret file, we must use a base64 encoded value.
+* If for example, we want one of the values to be procycla, instead of using procycla as input, we will use procycla encoded in base64.
+* To encode any value we can use the CLI tool base64 or use a page like this for example: https://www.base64encode.org/
